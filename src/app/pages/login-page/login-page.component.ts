@@ -26,6 +26,6 @@ export class LoginPageComponent implements OnInit {
       username: this.loginData.username,
       password: this.loginData.password
     };
-    this.loginService.login(this.loginData).subscribe();
+    this.loginService.login(this.loginData);
   }
 }

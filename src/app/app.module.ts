@@ -6,11 +6,13 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
+    RegisterPageComponent,
 
   ],
   imports: [
