@@ -4,15 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrainingTrackerPageComponent } from './pages/training-tracker-page/training-tracker-page.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    TrainingTrackerPageComponent,
 
   ],
   imports: [
@@ -24,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [
+   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
