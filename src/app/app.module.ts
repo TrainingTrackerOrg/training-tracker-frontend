@@ -10,12 +10,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrainingTrackerPageComponent } from './pages/training-tracker-page/training-tracker-page.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { MyWorkoutsPageComponent } from './pages/my-workouts-page/my-workouts-page.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     RegisterPageComponent,
     TrainingTrackerPageComponent,
+    MyWorkoutsPageComponent,
 
   ],
   imports: [

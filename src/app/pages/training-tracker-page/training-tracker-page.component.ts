@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./training-tracker-page.component.css']
 })
 export class TrainingTrackerPageComponent implements OnInit {
+
   intensityOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   fatigueOptions: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   formData: TrainingTrackerDTO  = {
@@ -50,10 +51,13 @@ export class TrainingTrackerPageComponent implements OnInit {
   );
   }
 
-
   logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userId');
     this.router.navigateByUrl('/login');
   }
+
+  workouts() {
+    this.router.navigateByUrl('/workouts');
+    }
 }

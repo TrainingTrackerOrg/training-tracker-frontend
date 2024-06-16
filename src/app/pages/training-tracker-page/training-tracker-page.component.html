@@ -58,6 +58,12 @@
       outline: none;
     }
 
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="datetime-local"] {
+      width: calc(100% - 7%);
+  }
+
     .submit-btn {
       width: 100%;
       padding: 0.75rem;
@@ -89,11 +95,27 @@
     .logout-btn:hover {
       background-color: #c82333;
     }
+    .workout-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.5rem 1rem;
+      background-color: #82a198;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .workout-btn:hover{
+      background-color: #007bff;
+      transition: background-color 0.5s ease;
+    }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>Training Log</h2>
+    <h2>Track Your Training</h2>
     <form (ngSubmit)="onSubmit()" action="/submit_training" method="post">
       <div class="form-group">
         <label for="name">Name</label>
@@ -144,6 +166,7 @@
       <button type="submit" class="submit-btn">Submit</button>
     </form>
     <button (click)="logout()" class="logout-btn">Logout</button>
+    <button (click)="workouts()" class="workout-btn">Workouts History</button>
   </div>
 </body>
 </html>
