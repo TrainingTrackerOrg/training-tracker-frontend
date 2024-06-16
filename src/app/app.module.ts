@@ -11,6 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TrainingTrackerPageComponent } from './pages/training-tracker-page/training-tracker-page.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { MyWorkoutsPageComponent } from './pages/my-workouts-page/my-workouts-page.component';
+import { WeeklyDataComponent } from './pages/weekly-data/weekly-data.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +22,7 @@ import { MyWorkoutsPageComponent } from './pages/my-workouts-page/my-workouts-pa
     RegisterPageComponent,
     TrainingTrackerPageComponent,
     MyWorkoutsPageComponent,
+    WeeklyDataComponent,
 
   ],
   imports: [

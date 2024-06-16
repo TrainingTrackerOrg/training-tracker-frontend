@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Training Log</title>
+  <title>Weekly Training Summary</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -24,7 +24,7 @@
       padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      max-width: 500px;
       width: 100%;
     }
 
@@ -58,11 +58,31 @@
       outline: none;
     }
 
-    .form-group input[type="text"],
-    .form-group input[type="number"],
-    .form-group input[type="datetime-local"] {
-      width: calc(100% - 7%);
-  }
+    .form-group input[readonly] {
+      background-color: #f9f9f9;
+    }
+
+    .year-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .year-cell {
+      padding: 0.75rem;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .year-cell:hover, .year-cell.selected {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
 
     .submit-btn {
       width: 100%;
@@ -79,6 +99,7 @@
     .submit-btn:hover {
       background-color: #0056b3;
     }
+
     .logout-btn {
       position: absolute;
       top: 10px;
@@ -95,19 +116,8 @@
     .logout-btn:hover {
       background-color: #c82333;
     }
+
     .workout-btn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 0.5rem 1rem;
-      background-color: #82a198;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .weekly-btn {
       position: absolute;
       top: 10px;
       left: 190px;
@@ -119,71 +129,94 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    .workout-btn:hover{
+    .weekly-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.5rem 1rem;
+      background-color: #82a198;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .workout-btn:hover {
       background-color: #007bff;
       transition: background-color 0.5s ease;
     }
-    .weekly-btn:hover{
+    .weekly-btn:hover {
       background-color: #007bff;
       transition: background-color 0.5s ease;
     }
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group input[type="datetime-local"] {
+      width: calc(100% - 6%);
+  }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <h2>Track Your Training</h2>
-    <form (ngSubmit)="onSubmit()" action="/submit_training" method="post">
+    <h2>Weekly Training Summary</h2>
+    <form (click)="onSubmit()" action="/submit_weekly_summary" method="get">
       <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required [(ngModel)]="formData.name">
-      </div>
-
-      <div class="form-group">
-        <label for="exerciseType">Exercise Type</label>
-        <select id="exerciseType" name="exerciseType" required [(ngModel)]="formData.exerciseType">
-          <option value="">Select exercise type...</option>
-          <option value="CARDIO">Cardio</option>
-          <option value="STRENGTH">Strength Training</option>
-          <option value="FLEXIBILITY">Flexibility</option>
+        <label for="month">Select Month</label>
+        <select id="month" name="month" required [(ngModel)]="month">
+          <option value="">Select month...</option>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="duration">Duration (minutes)</label>
-        <input type="number" id="duration" name="duration" min="1" required [(ngModel)]="formData.duration">
-      </div>
-
-      <div class="form-group">
-        <label for="start">Start Time</label>
-        <input type="datetime-local" id="start" name="start" required [(ngModel)]="formData.start">
-      </div>
-
-      <div class="form-group">
-        <label for="caloriesLost">Calories Lost</label>
-        <input type="number" id="caloriesLost" name="caloriesLost" min="0" required [(ngModel)]="formData.caloriesLost">
-      </div>
-
-      <div class="form-group">
-        <label for="trainingIntensity">Training Intensity (1-10)</label>
-        <select id="trainingIntensity" name="trainingIntensity" required [(ngModel)]="formData.trainingIntensity">
-          <option value="">Select intensity...</option>
-          <option *ngFor="let num of intensityOptions" [value]="num">{{ num }}</option>
+        <label for="week">Select Week</label>
+        <select id="week" name="week" required [(ngModel)]="week">
+          <option value="">Select week...</option>
+          <option value="1">Week 1</option>
+          <option value="2">Week 2</option>
+          <option value="3">Week 3</option>
+          <option value="4">Week 4</option>
+          <option value="5">Week 5</option>
         </select>
       </div>
-
-      <div class="form-group">
-        <label for="fatigue">Fatigue Level (1-10)</label>
-        <select id="fatigue" name="fatigue" required [(ngModel)]="formData.fatigue">
-          <option value="">Select fatigue level...</option>
-          <option *ngFor="let num of fatigueOptions" [value]="num">{{ num }}</option>
-        </select>
-      </div>
-
-      <button type="submit" class="submit-btn">Submit</button>
     </form>
+      <div class="form-group">
+        <label for="weeklyDuration">Weekly Duration (hours)</label>
+        <input type="number" id="weeklyDuration" name="weeklyDuration" required readonly [(ngModel)]="weeklyDataDTO.weeklyDuration">
+      </div>
+
+      <div class="form-group">
+        <label for="numberOfTrainings">Number of Trainings</label>
+        <input type="number" id="numberOfTrainings" name="numberOfTrainings" required readonly [(ngModel)]="weeklyDataDTO.numberOfTrainings">
+      </div>
+
+      <div class="form-group">
+        <label for="avgFatigue">Average Fatigue</label>
+        <input type="number" step="0.1" id="avgFatigue" name="avgFatigue" required readonly [(ngModel)]="weeklyDataDTO.avgFatigue">
+      </div>
+
+      <div class="form-group">
+        <label for="avgIntensity">Average Intensity</label>
+        <input type="number" step="0.1" id="avgIntensity" name="avgIntensity" required readonly [(ngModel)]="weeklyDataDTO.avgIntensity">
+      </div>
+
+
     <button (click)="logout()" class="logout-btn">Logout</button>
     <button (click)="workouts()" class="workout-btn">Workouts History</button>
-    <button (click)="weekly()" class="weekly-btn">Weekly Data</button>
+    <button (click)="tracker()" class="weekly-btn">Track Trainings</button>
   </div>
+
+
 </body>
 </html>
