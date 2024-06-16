@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginDto } from './login-dto.model';
 import { LoginServiceService } from './login-service.service';
 import {ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,7 +11,7 @@ import {ToastrService } from 'ngx-toastr';
 })
 export class LoginPageComponent implements OnInit {
   loginData: LoginDto;
-  constructor(private loginService: LoginServiceService) {
+  constructor(private loginService: LoginServiceService, private router: Router) {
     this.loginData = {
       username: '',
       password: ''
@@ -27,5 +28,10 @@ export class LoginPageComponent implements OnInit {
       password: this.loginData.password
     };
     this.loginService.login(this.loginData);
+  }
+
+
+  navigateToRegistration() {
+    this.router.navigate(['/register']);
   }
 }
