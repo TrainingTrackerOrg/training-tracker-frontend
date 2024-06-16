@@ -91,7 +91,9 @@
         <label for="password">Password</label>
         <input type="password" id="password" name="password" [(ngModel)]="registerData.password" required>
       </div>
-      <button type="submit" class="register-btn">Register</button>
+      <button type="submit" class="register-btn">Regiser</button>
+      <button (click)="navigateToLogin()" class="register-btn">Go To Login</button>
+
     </form>
   </div>
 </body>

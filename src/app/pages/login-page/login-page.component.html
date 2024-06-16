@@ -89,7 +89,9 @@
         <input type="password" id="password" name="password" [(ngModel)]="loginData.password" required>
       </div>
       <button type="submit" class="login-btn">Login</button>
+      <button (click)="navigateToRegistration()" class="login-btn">Go To Registration</button>
     </form>
+
   </div>
 </body>
 </html>
