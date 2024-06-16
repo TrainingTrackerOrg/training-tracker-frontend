@@ -27,6 +27,8 @@ export class LoginPageComponent implements OnInit {
       username: this.loginData.username,
       password: this.loginData.password
     };
+    console.log(formData.username);
+    console.log(formData.password);
     this.loginService.login(this.loginData);
   }
 
