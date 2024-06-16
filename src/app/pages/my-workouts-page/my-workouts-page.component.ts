@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class MyWorkoutsPageComponent implements OnInit {
 
 
+
   workouts: TrainingTrackerDTO[] = [];
   creatorId: number = 0;
   constructor(private workoutService: MyWorkoutsService, private snackbar: MatSnackBar,private router: Router) { }
@@ -30,5 +31,7 @@ export class MyWorkoutsPageComponent implements OnInit {
   redirectToTracker() {
     this.router.navigateByUrl('/training-tracker');
   }
-
+  weekly() {
+    this.router.navigateByUrl('/weekly-data');
+    }
 }
