@@ -11,7 +11,7 @@ export class WeeklyDataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(creatorId: number, week: number, month: string): Observable<WeeklyDataDTO>{
-    return this.http.get<WeeklyDataDTO>(`http://localhost:8080/api/trainings/all-by-month/${month}/${week}/${creatorId}`);
+  getData(creatorId: number, week: number, month: string, year:number): Observable<WeeklyDataDTO>{
+    return this.http.get<WeeklyDataDTO>(`http://localhost:8080/api/trainings/all-by-month/${month}/${week}/${creatorId}/${year}`);
   }
 }
