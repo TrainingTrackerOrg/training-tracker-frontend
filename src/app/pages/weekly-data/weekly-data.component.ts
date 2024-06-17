@@ -16,6 +16,7 @@ export class WeeklyDataComponent implements OnInit {
     avgFatigue: 0,
     avgIntensity: 0
   }
+  year: number = 2024;
   week:number = 0;
   month: string = '';
   creatorId: number = 0;
@@ -27,7 +28,7 @@ export class WeeklyDataComponent implements OnInit {
   onSubmit(): void{
     const userId = localStorage.getItem('userId');
     this.creatorId = userId !== null ? +userId : 0;
-      this.weeklyService.getData(this.creatorId, this.week, this.month).subscribe(res => {
+      this.weeklyService.getData(this.creatorId, this.week, this.month, this.year).subscribe(res => {
         this.weeklyDataDTO = res;
       });
     }

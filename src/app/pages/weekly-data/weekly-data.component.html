@@ -161,9 +161,17 @@
     <h2>Weekly Training Summary</h2>
     <form (click)="onSubmit()" action="/submit_weekly_summary" method="get">
       <div class="form-group">
-        <label for="month">Select Month</label>
+        <label for="year">Select a Year</label>
+        <select id="year" name="year" required [(ngModel)]="year">
+          <option value=2024>2024</option>
+          <option value=2023>2023</option>
+          <option value=2022>2022</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="month">Select a Month</label>
         <select id="month" name="month" required [(ngModel)]="month">
-          <option value="">Select month...</option>
+          <option value="">Select a month...</option>
           <option value="January">January</option>
           <option value="February">February</option>
           <option value="March">March</option>
@@ -180,9 +188,9 @@
       </div>
 
       <div class="form-group">
-        <label for="week">Select Week</label>
+        <label for="week">Select a Week</label>
         <select id="week" name="week" required [(ngModel)]="week">
-          <option value="">Select week...</option>
+          <option value="">Select a week...</option>
           <option value="1">Week 1</option>
           <option value="2">Week 2</option>
           <option value="3">Week 3</option>
